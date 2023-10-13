@@ -34,7 +34,7 @@
 
 
     <build>
-        <finalName>comsol-waani</finalName>
+        <finalName>comsol-gen</finalName>
     </build>
 
 </project>
