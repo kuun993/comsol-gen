@@ -24,7 +24,7 @@ public class BoxSelect extends AbstractSelect {
     private static final String SELECT_TAG = "boxsel";
 
     @Override
-    public String createSelect(int entityDim, GeomSequence geom, String boxSelectTag, String cumulativeTag, double x, double y, double z) {
+    public GeomFeature createSelect(int entityDim, GeomSequence geom, String boxSelectTag, double x, double y, double z) {
         // 创建框选择
         GeomFeature geomFeature = geom.create(boxSelectTag, ComsolConstants.BoxSelection);
         // 设置几何实体层
@@ -36,9 +36,7 @@ public class BoxSelect extends AbstractSelect {
         geomFeature.set("ymax", y + MIN);
         geomFeature.set("zmin", z - MIN);
         geomFeature.set("zmax", z + MIN);
-        // 关联累积选择
-        geomFeature.set("contributeto", cumulativeTag);
-        return CumulativeSelect.namedTag(geom.tag(), boxSelectTag);
+       return geomFeature;
     }
 
 

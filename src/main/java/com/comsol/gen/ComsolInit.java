@@ -38,9 +38,8 @@ public class ComsolInit {
      * 初始化
      * @param initEnum
      */
-    public static Model init(InitEnum initEnum, String compTag, String geomTag, String meshTag) {
-        String modelTag = TagUtil.modelTag();
-        Model model = ModelHandler.build(modelTag);
+    public static Model init(InitEnum initEnum, String modelTag, String modelPath, String compTag, String geomTag, String meshTag) {
+        Model model = ModelHandler.build(modelTag, modelPath);
         switch (initEnum) {
             case RandomVibration: {
                 ComsolInit.randomVibration(model, compTag, geomTag, meshTag);

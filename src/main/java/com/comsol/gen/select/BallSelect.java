@@ -24,10 +24,13 @@ public class BallSelect extends AbstractSelect {
     private static final String SELECT_TAG = "ballsel";
 
 
+
+
+
     @Override
-    public String createSelect(int entityDim, GeomSequence geom, String ballSelectTag, String cumulativeTag, double x, double y, double z) {
+    public GeomFeature createSelect(int entityDim, GeomSequence geom, String selectTag, double x, double y, double z) {
         // 创建球选择
-        GeomFeature geomFeature = geom.create(ballSelectTag, ComsolConstants.BallSelection);
+        GeomFeature geomFeature = geom.create(selectTag, ComsolConstants.BallSelection);
         // 设置几何实体层
         geomFeature.set("entitydim", entityDim);
         // 设置球心坐标
@@ -36,11 +39,8 @@ public class BallSelect extends AbstractSelect {
         geomFeature.set("posz", z);
         // 设置半径
         geomFeature.set("r", R);
-        // 关联累积选择
-        geomFeature.set("contributeto", cumulativeTag);
-        return CumulativeSelect.namedTag(geom.tag(), ballSelectTag);
+        return geomFeature;
     }
-
 
     @Override
     public String selectTag() {

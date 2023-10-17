@@ -15,17 +15,11 @@ public class CumulativeSelect {
 
 
     /**
-     * geomTag_selectTag
-     */
-    private static final String NAMED_FORMAT = "%s_%s";
-
-
-    /**
      * 创建累计选择
      * @param geom
      * @return
      */
-    public static String createSelect(GeomSequence geom) {
+    public static String createCumulativeSelect(GeomSequence geom) {
         String name = TagUtil.cselTag();
         createCumulativeSelect(geom, name, name);
         return name;
@@ -43,15 +37,5 @@ public class CumulativeSelect {
         cumulativeSelection.label(label);
     }
 
-
-    /**
-     * 选择 累计选择的标签
-     * @param geomTag
-     * @param cSelTag
-     * @return
-     */
-    public static String namedTag(String geomTag, String cSelTag) {
-        return String.format(NAMED_FORMAT, geomTag, cSelTag);
-    }
 
 }
