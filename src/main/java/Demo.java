@@ -27,14 +27,17 @@ public class Demo {
         // 固体传热 + 稳态
         Model model = ComsolInit.init(InitEnum.HeatTransferInSolidsStationary, modelTag, "C:/Users/CBK/Desktop/ht-test", compTag, geomTag, meshTag);
 
+        ModelNode modelNode = model.component("compTag");
+
         // 获取几何
         GeomSequence geom = model.geom(geomTag);
+
 
         // 导入模型
         GeomHandler geomHandler = new GeomHandler();
         GeomVo geomVo = new GeomVo();
         // set geomVo
-        geomHandler.geomImport(geom, geomVo);
+        geomHandler.geomImport(modelNode, geomVo);
 
 
         // 球选择

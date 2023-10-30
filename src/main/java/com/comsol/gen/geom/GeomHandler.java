@@ -5,6 +5,7 @@ import com.comsol.gen.vo.GeomVo;
 import com.comsol.model.GeomFeature;
 import com.comsol.model.GeomSequence;
 import com.comsol.gen.util.TagUtil;
+import com.comsol.model.ModelNode;
 
 
 /**
@@ -16,6 +17,13 @@ public class GeomHandler {
 
 
     /**
+     * 几何
+     * 默认三维
+     */
+    private static final int GeometryDimension = 3;
+
+
+    /**
      * 导入几何
      *  1. 导入stp文件
      *  2. 形成 联合体 or 自动装配
@@ -23,16 +31,22 @@ public class GeomHandler {
      * @param geom
      * @param geomVo
      */
-    public void geomImport(GeomSequence geom, GeomVo geomVo) {
-        String impTag = TagUtil.impTag();
+    public void geomImport(ModelNode modelNode, GeomVo geomVo) {
+        // 创建组件几何
+        String geomTag = TagUtil.geomTag();
+        GeomSequence geomSequence = modelNode.geom().create(geomTag, GeometryDimension);
+
         // 创建几何导入: 组件 -> 几何 -> 导入
-        GeomFeature geomFeature = geom.create(impTag, "Import");
-        // 几何导入stp文件
+        // 导入stp文件
+        String impTag = TagUtil.impTag();
+        GeomFeature geomFeature = geomSequence.create(impTag, "Import");
         geomImportStp(geomFeature, geomVo.getStpFilePath());
+
         // fin
-        fin(geom, geomVo);
+        fin(geomSequence, geomVo);
+
         // 构建导入的几何对象
-        run(geom, impTag);
+        run(geomSequence, impTag);
     }
 
 
@@ -53,11 +67,11 @@ public class GeomHandler {
 
     /**
      * 形成 联合体 or 自动装配
-     * @param geom
+     * @param geomSequence
      * @param geomVo
      */
-    private void fin(GeomSequence geom, GeomVo geomVo) {
-        GeomFeature fin = geom.feature("fin");
+    private void fin(GeomSequence geomSequence, GeomVo geomVo) {
+        GeomFeature fin = geomSequence.feature("fin");
         fin.set("action", geomVo.getAction());
         fin.set("repairtoltype", geomVo.getRepairTolType());
 
@@ -71,15 +85,15 @@ public class GeomHandler {
 
     /**
      * 构建导入的几何对象
-     * @param geom
+     * @param geomSequence
      * @param impTag    不传构建所有对象
      */
-    private void run(GeomSequence geom, String impTag) {
+    private void run(GeomSequence geomSequence, String impTag) {
         if(impTag == null || impTag.isEmpty()) {
-            geom.runPre("fin");
+            geomSequence.runPre("fin");
             return;
         }
-        geom.run();
+        geomSequence.run();
     }
 
 
