@@ -1,6 +1,9 @@
 package com.comsol.gen.vo;
 
+import com.comsol.gen.common.enums.PhysicsEnum;
 import com.comsol.gen.common.enums.PhysicsInterfaceEnum;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -11,16 +14,19 @@ import java.util.List;
  * @date 2023/10/16 13:35
  * @description TODO
  */
+@Getter
+@Setter
 @ToString
 public class PhysicsVo implements Serializable {
 
     private static final long serialVersionUID = 7621710160691874411L;
 
-    /**
-     * 物理场
-     */
-    private PhysicsInterfaceEnum physicsInterface;
 
+    /**
+     * 物理场接口
+     * 如: 固体传热
+     */
+    private PhysicsEnum physics;
 
     /**
      * 载荷设置
@@ -28,19 +34,4 @@ public class PhysicsVo implements Serializable {
     private List<PhysicsFeatureVo> features;
 
 
-    public PhysicsInterfaceEnum getPhysicsInterface() {
-        return physicsInterface;
-    }
-
-    public void setPhysicsInterface(PhysicsInterfaceEnum physicsInterface) {
-        this.physicsInterface = physicsInterface;
-    }
-
-    public List<PhysicsFeatureVo> getFeatures() {
-        return features;
-    }
-
-    public void setFeatures(List<PhysicsFeatureVo> features) {
-        this.features = features;
-    }
 }

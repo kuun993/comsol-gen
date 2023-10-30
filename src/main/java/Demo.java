@@ -25,7 +25,7 @@ public class Demo {
         String meshTag = TagUtil.meshTag();
 
         // 固体传热 + 稳态
-        Model model = ComsolInit.init(InitEnum.HeatTransferInSolidsStationary, modelTag, "C:/Users/CBK/Desktop/ht-test", compTag, geomTag, meshTag);
+        Model model = ComsolInit.init(InitEnum.HeatTransferInSolidsStationary, modelTag, "C:/Users/CBK/Desktop/ht-test", compTag);
 
         ModelNode modelNode = model.component("compTag");
 

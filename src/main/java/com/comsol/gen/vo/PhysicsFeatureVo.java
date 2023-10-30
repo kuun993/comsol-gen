@@ -19,15 +19,22 @@ public class PhysicsFeatureVo implements Serializable {
 
     private static final long serialVersionUID = 910986978893973473L;
 
+    /**
+     * 物理场特征
+     * 如：固体传热的热源、热通量等
+     */
     private String feature;
-
-    private SelectVo select;
-
-
 
 
     /**
-     * 属性
+     * 物理场特征
+     * 选择对象
+     */
+    private SelectVo select;
+
+
+    /**
+     * 物理场特征属性
      */
     private Map<String, String> properties;
 

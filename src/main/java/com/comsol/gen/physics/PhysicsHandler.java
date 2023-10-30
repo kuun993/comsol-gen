@@ -1,19 +1,18 @@
 package com.comsol.gen.physics;
 
 import com.comsol.gen.common.AbstractHandler;
+import com.comsol.gen.common.enums.PhysicsEnum;
 import com.comsol.gen.select.AbstractSelect;
 import com.comsol.gen.select.BallSelect;
+import com.comsol.gen.util.CollectionUtil;
 import com.comsol.gen.util.TagUtil;
 import com.comsol.gen.vo.PhysicsFeatureVo;
 import com.comsol.gen.vo.PhysicsVo;
-import com.comsol.gen.vo.SelectVo;
 import com.comsol.model.GeomSequence;
 import com.comsol.model.ModelNode;
 import com.comsol.model.physics.Physics;
 import com.comsol.model.physics.PhysicsFeature;
-
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author waani
@@ -30,7 +29,7 @@ public class PhysicsHandler extends AbstractHandler {
      * @param physicsVos
      */
     public void createPhysics(ModelNode comp, GeomSequence geom, List<PhysicsVo> physicsVos){
-        if (physicsVos == null || physicsVos.size() == 0) {
+        if (CollectionUtil.isEmpty(physicsVos)) {
             return;
         }
         for (PhysicsVo physicsVo : physicsVos) {
@@ -47,9 +46,11 @@ public class PhysicsHandler extends AbstractHandler {
      */
     public void createPhysics(ModelNode comp, GeomSequence geom, PhysicsVo physicsVo){
         // 物理场接口
-        Physics physics = comp.physics(physicsVo.getPhysicsInterface().getTag());
+        PhysicsEnum physicsEnum = physicsVo.getPhysics();
+        String physicsTag = TagUtil.uniqueTag(physicsEnum.getTag());
+        Physics physics = comp.physics().create(physicsTag, physicsEnum.getPhysics());
         // 添加物理场特征
-        addPhysics(geom, physics, physicsVo.getFeatures());
+        addPhysicsFeatures(geom, physics, physicsVo.getFeatures());
     }
 
 
@@ -59,12 +60,12 @@ public class PhysicsHandler extends AbstractHandler {
      * @param physics
      * @param featuresVos
      */
-    private void addPhysics(GeomSequence geom, Physics physics, List<PhysicsFeatureVo> featuresVos){
-        if (featuresVos == null || featuresVos.size() == 0) {
+    private void addPhysicsFeatures(GeomSequence geom, Physics physics, List<PhysicsFeatureVo> featuresVos){
+        if (CollectionUtil.isEmpty(featuresVos)) {
             return;
         }
         for (PhysicsFeatureVo featuresVo : featuresVos) {
-            addPhysics(geom, physics, featuresVo);
+            addPhysicsFeature(geom, physics, featuresVo);
         }
     }
 
@@ -75,7 +76,7 @@ public class PhysicsHandler extends AbstractHandler {
      * @param physics
      * @param featureVo
      */
-    private void addPhysics(GeomSequence geom, Physics physics, PhysicsFeatureVo featureVo){
+    private void addPhysicsFeature(GeomSequence geom, Physics physics, PhysicsFeatureVo featureVo){
         String featureTag = TagUtil.uniqueTag(featureVo.getFeature());
         PhysicsFeature physicsFeature = physics.create(featureTag, featureVo.getFeature(), featureVo.getSelect().getEntityDim());
         // 设置物理场特征参数

@@ -3,14 +3,12 @@ package com.comsol.gen;
 import com.comsol.gen.common.enums.InitEnum;
 import com.comsol.gen.common.enums.StudyEnum;
 import com.comsol.gen.comp.CompHandler;
-import com.comsol.gen.model.ModelHandler;
+import com.comsol.gen.comp.ModelHandler;
 import com.comsol.model.Model;
 import com.comsol.model.ModelNode;
 import com.comsol.model.Study;
 import com.comsol.model.StudyFeature;
 import com.comsol.gen.common.enums.PhysicsInterfaceEnum;
-import com.comsol.gen.util.TagUtil;
-
 
 
 /**
@@ -38,36 +36,40 @@ public class ComsolInit {
      * 初始化
      * @param initEnum
      */
-    public static Model init(InitEnum initEnum, String modelTag, String modelPath, String compTag, String geomTag, String meshTag) {
-        Model model = ModelHandler.build(modelTag, modelPath);
+    public static Model init(InitEnum initEnum, String modelTag, String modelPath, String compTag) {
+        ModelHandler modelHandler = new ModelHandler();
+        Model model = modelHandler.build(modelTag, modelPath);
         switch (initEnum) {
             case RandomVibration: {
-                ComsolInit.randomVibration(model, compTag, geomTag, meshTag);
+                ComsolInit.randomVibration(model, compTag);
                 break;
             }
             case HeatTransferInSolidsTransient: {
-                ComsolInit.heatTransferInSolids(model, StudyEnum.Transient, compTag, geomTag, meshTag);
+                ComsolInit.heatTransferInSolids(model, StudyEnum.Transient, compTag);
                 break;
             }
             case HeatTransferInSolidsStationary: {
-                ComsolInit.heatTransferInSolids(model, StudyEnum.Stationary, compTag, geomTag, meshTag);
+                ComsolInit.heatTransferInSolids(model, StudyEnum.Stationary, compTag);
                 break;
             }
             case ThermalStructureInteractionTransient: {
-                ComsolInit.thermalStructureInteraction(model, StudyEnum.Transient, compTag, geomTag, meshTag);
+                ComsolInit.thermalStructureInteraction(model, StudyEnum.Transient, compTag);
                 break;
             }
             case ThermalStructureInteractionStationary: {
-                ComsolInit.thermalStructureInteraction(model, StudyEnum.Stationary, compTag, geomTag, meshTag);
+                ComsolInit.thermalStructureInteraction(model, StudyEnum.Stationary, compTag);
                 break;
             }
             case HeatTransferInSolidsAndFluidsTransient: {
-                ComsolInit.heatTransferInSolidsAndFluids(model, StudyEnum.Transient, compTag, geomTag, meshTag);
+                ComsolInit.heatTransferInSolidsAndFluids(model, StudyEnum.Transient, compTag);
                 break;
             }
             case HeatTransferInSolidsAndFluidsStationary: {
-                ComsolInit.heatTransferInSolidsAndFluids(model, StudyEnum.Stationary, compTag, geomTag, meshTag);
+                ComsolInit.heatTransferInSolidsAndFluids(model, StudyEnum.Stationary, compTag);
                 break;
+            }
+            default: {
+
             }
         }
         return model;
@@ -77,9 +79,9 @@ public class ComsolInit {
      * 随机振动
      * @param model
      */
-    private static void randomVibration(Model model, String compTag, String geomTag, String meshTag) {
+    private static void randomVibration(Model model, String compTag) {
         // 1、初始化模型组件
-        ModelNode comp = CompHandler.create(model, compTag, geomTag, meshTag);
+        ModelNode comp = CompHandler.create(model, compTag);
 
         // 2、创建物理场接口
         createPhysics(PhysicsInterfaceEnum.SolidMechanics, comp);
@@ -133,9 +135,9 @@ public class ComsolInit {
      * 固体传热
      * @param model
      */
-    private static void heatTransferInSolids(Model model, StudyEnum studyEnum, String compTag, String geomTag, String meshTag) {
+    private static void heatTransferInSolids(Model model, StudyEnum studyEnum, String compTag) {
         // 1、初始化模型组件
-        ModelNode comp = CompHandler.create(model, compTag, geomTag, meshTag);
+        ModelNode comp = CompHandler.create(model, compTag);
 
         // 2、创建物理场接口
         createPhysics(PhysicsInterfaceEnum.HeatTransfer, comp);
@@ -150,9 +152,9 @@ public class ComsolInit {
      * 热-结构相互作用
      * @param model
      */
-    private static void thermalStructureInteraction(Model model, StudyEnum studyEnum, String compTag, String geomTag, String meshTag) {
+    private static void thermalStructureInteraction(Model model, StudyEnum studyEnum, String compTag) {
         // 1、初始化模型组件
-        ModelNode comp = CompHandler.create(model, compTag, geomTag, meshTag);
+        ModelNode comp = CompHandler.create(model, compTag);
 
         // 2、创建物理场接口
         createPhysics(PhysicsInterfaceEnum.SolidMechanics, comp);
@@ -178,9 +180,9 @@ public class ComsolInit {
      * 固体和流体传热
      * @param model
      */
-    private static void heatTransferInSolidsAndFluids(Model model, StudyEnum studyEnum, String compTag, String geomTag, String meshTag) {
+    private static void heatTransferInSolidsAndFluids(Model model, StudyEnum studyEnum, String compTag) {
         // 1、初始化模型组件
-        ModelNode comp = CompHandler.create(model, compTag, geomTag, meshTag);
+        ModelNode comp = CompHandler.create(model, compTag);
 
         // 2、创建物理场接口
         createPhysics(PhysicsInterfaceEnum.HeatTransferInSolidsAndFluids, comp);
