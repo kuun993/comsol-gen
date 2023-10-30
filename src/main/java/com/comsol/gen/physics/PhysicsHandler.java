@@ -1,5 +1,6 @@
 package com.comsol.gen.physics;
 
+import com.comsol.gen.common.AbstractHandler;
 import com.comsol.gen.select.AbstractSelect;
 import com.comsol.gen.select.BallSelect;
 import com.comsol.gen.util.TagUtil;
@@ -19,7 +20,7 @@ import java.util.Map;
  * @date 2023/10/17 11:43
  * @description TODO
  */
-public class PhysicsHandler {
+public class PhysicsHandler extends AbstractHandler {
 
 
     /**
@@ -77,37 +78,14 @@ public class PhysicsHandler {
     private void addPhysics(GeomSequence geom, Physics physics, PhysicsFeatureVo featureVo){
         String featureTag = TagUtil.uniqueTag(featureVo.getFeature());
         PhysicsFeature physicsFeature = physics.create(featureTag, featureVo.getFeature(), featureVo.getSelect().getEntityDim());
-        setParam(physicsFeature, featureVo.getProperties());
-        select(geom, physicsFeature, featureVo.getSelect());
+        // 设置物理场特征参数
+        setProperties(physicsFeature, featureVo.getProperties());
+        // 选择对象
+        AbstractSelect abstractSelect = new BallSelect();
+        selectDim(abstractSelect, geom, physicsFeature.selection(), featureVo.getSelect());
     }
 
 
-    /**
-     * 设置物理场特征参数
-     * @param physicsFeature
-     * @param properties
-     */
-    private void setParam(PhysicsFeature physicsFeature, Map<String, String> properties) {
-        if (properties == null || properties.size() == 0) {
-            return;
-        }
-        for (Map.Entry<String, String> entry : properties.entrySet()) {
-            physicsFeature.set(entry.getKey(), entry.getValue());
-        }
-    }
 
-
-    /**
-     * 选择
-     * @param geom
-     * @param physicsFeature
-     * @param selectVo
-     */
-    private void select(GeomSequence geom, PhysicsFeature physicsFeature, SelectVo selectVo){
-        AbstractSelect ballSelect = new BallSelect();
-        String selectTag = ballSelect.selectTag();
-        String named = ballSelect.create(selectVo.getEntityDim(), geom, selectTag, selectVo.getX(), selectVo.getY(), selectVo.getZ());
-        physicsFeature.selection().named(named);
-    }
 
 }

@@ -1,5 +1,6 @@
 package com.comsol.gen.vo;
 
+import com.comsol.gen.util.StringUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -30,5 +31,16 @@ public class MaterialVo implements Serializable {
     private Map<String, String> properties;
 
 
+    /**
+     * 材料组
+     */
+    private String group;
 
+
+    public String getGroup() {
+        if (StringUtil.isEmpty(group)) {
+            return "def";
+        }
+        return group;
+    }
 }

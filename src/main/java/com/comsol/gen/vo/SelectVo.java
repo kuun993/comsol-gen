@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author waani
@@ -14,7 +15,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class SelectVo extends CoordinateVo implements Serializable {
+public class SelectVo implements Serializable {
 
     private static final long serialVersionUID = 8395653363505280863L;
 
@@ -25,12 +26,16 @@ public class SelectVo extends CoordinateVo implements Serializable {
 
 
     /**
+     * 坐标集合
+     */
+    private List<CoordinateVo> coordinateVos;
+
+
+    /**
      * 默认为域
      * @return
      */
     public Integer getEntityDim() {
-
-
         return entityDim==null? 3: entityDim;
     }
 

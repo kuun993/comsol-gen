@@ -6,6 +6,7 @@ import com.comsol.gen.select.AbstractSelect;
 import com.comsol.gen.select.BallSelect;
 import com.comsol.gen.select.CumulativeSelect;
 import com.comsol.gen.util.TagUtil;
+import com.comsol.gen.vo.GeomVo;
 import com.comsol.model.*;
 
 /**
@@ -30,11 +31,11 @@ public class Demo {
         GeomSequence geom = model.geom(geomTag);
 
         // 导入模型
-        String impTag = TagUtil.impTag();
-        GeomFeature geomFeature = GeomHandler.geomImport(geom, impTag);
-        GeomHandler.geomImportStp(geomFeature, "C:/Users/CBK/Desktop/ht-test/stp/PCB-ASSEM.stp");
+        GeomHandler geomHandler = new GeomHandler();
+        GeomVo geomVo = new GeomVo();
+        // set geomVo
+        geomHandler.geomImport(geom, geomVo);
 
-        GeomHandler.run(geom, impTag);
 
         // 球选择
         AbstractSelect select = new BallSelect();
@@ -48,14 +49,7 @@ public class Demo {
        // 组件
         ModelNode comp = model.component(compTag);
 
-//        comp.physics()
 
-        // 创建材料
-        Material material = MaterialHandler.createMaterial(comp);
-        // 设置一些属性
-        material.propertyGroup("def").set("density", "20");
-        // named
-        MaterialHandler.set2GeomByNamed(material, selectNamedTag);
 
     }
 

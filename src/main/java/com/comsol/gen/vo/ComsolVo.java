@@ -24,20 +24,12 @@ public class ComsolVo implements Serializable {
      */
     private String modelName;
 
-    /**
-     * 物理场接口和研究
-     */
-    private Integer physicsAndStudy;
 
     /**
-     * stp文件路径
+     * 模型目录，工作空间
      */
-    private String stpPath;
+    private String modelPath;
 
-    /**
-     * 绝对导入误差
-     */
-    private double importTol;
 
     /**
      * 材料列表
