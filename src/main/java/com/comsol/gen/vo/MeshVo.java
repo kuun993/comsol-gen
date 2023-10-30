@@ -15,12 +15,14 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class MeshVo implements Serializable {
+public class MeshVo extends BaseVo implements Serializable {
 
     private static final long serialVersionUID = -8563354063864808983L;
 
-    private String meshTag;
 
+    /**
+     * Mesh feature type
+     */
     private String type;
 
     private double max;

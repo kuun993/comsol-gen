@@ -45,6 +45,10 @@ public abstract class AbstractHandler {
      * @param selectVo
      */
     protected void selectDim(AbstractSelect select, GeomSequence geom, XDLocalSelection selection, SelectVo selectVo){
+        if (selectVo.isAll()) {
+            selection.all();
+            return;
+        }
         List<CoordinateVo> coordinateVos = selectVo.getCoordinateVos();
         if (CollectionUtil.isEmpty(coordinateVos)) {
             return;

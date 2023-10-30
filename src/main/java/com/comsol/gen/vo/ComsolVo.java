@@ -32,6 +32,11 @@ public class ComsolVo implements Serializable {
 
 
     /**
+     * 几何
+     */
+    private GeomVo geom;
+
+    /**
      * 材料列表
      */
     private List<MaterialVo> materials;

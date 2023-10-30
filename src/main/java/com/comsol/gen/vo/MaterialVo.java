@@ -16,7 +16,7 @@ import java.util.Map;
 @Getter
 @Setter
 @ToString
-public class MaterialVo implements Serializable {
+public class MaterialVo extends BaseVo implements Serializable {
 
 
     /**

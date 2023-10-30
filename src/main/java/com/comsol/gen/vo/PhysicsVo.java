@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class PhysicsVo implements Serializable {
+public class PhysicsVo extends BaseVo implements Serializable {
 
     private static final long serialVersionUID = 7621710160691874411L;
 

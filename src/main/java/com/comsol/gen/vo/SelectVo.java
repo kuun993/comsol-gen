@@ -32,6 +32,12 @@ public class SelectVo implements Serializable {
 
 
     /**
+     * 全选
+     */
+    private boolean all;
+
+
+    /**
      * 默认为域
      * @return
      */

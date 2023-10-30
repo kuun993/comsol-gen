@@ -38,4 +38,11 @@ public class PhysicsFeatureVo implements Serializable {
      */
     private Map<String, String> properties;
 
+
+    /**
+     * 父物理场特征
+     * 如 "固体" 创建平移运动等
+     */
+    private String parentTag;
+
 }

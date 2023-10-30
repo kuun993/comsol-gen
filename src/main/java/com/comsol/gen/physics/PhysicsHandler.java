@@ -1,10 +1,12 @@
 package com.comsol.gen.physics;
 
 import com.comsol.gen.common.AbstractHandler;
+import com.comsol.gen.common.HandlerInterface;
 import com.comsol.gen.common.enums.PhysicsEnum;
 import com.comsol.gen.select.AbstractSelect;
 import com.comsol.gen.select.BallSelect;
 import com.comsol.gen.util.CollectionUtil;
+import com.comsol.gen.util.StringUtil;
 import com.comsol.gen.util.TagUtil;
 import com.comsol.gen.vo.PhysicsFeatureVo;
 import com.comsol.gen.vo.PhysicsVo;
@@ -19,23 +21,7 @@ import java.util.List;
  * @date 2023/10/17 11:43
  * @description TODO
  */
-public class PhysicsHandler extends AbstractHandler {
-
-
-    /**
-     * 给物理场接口添加特征
-     * @param comp
-     * @param geom
-     * @param physicsVos
-     */
-    public void createPhysics(ModelNode comp, GeomSequence geom, List<PhysicsVo> physicsVos){
-        if (CollectionUtil.isEmpty(physicsVos)) {
-            return;
-        }
-        for (PhysicsVo physicsVo : physicsVos) {
-            createPhysics(comp, geom, physicsVo);
-        }
-    }
+public class PhysicsHandler extends AbstractHandler implements HandlerInterface<PhysicsVo> {
 
 
     /**
@@ -44,7 +30,8 @@ public class PhysicsHandler extends AbstractHandler {
      * @param geom
      * @param physicsVo
      */
-    public void createPhysics(ModelNode comp, GeomSequence geom, PhysicsVo physicsVo){
+    @Override
+    public void create(ModelNode comp, GeomSequence geom, PhysicsVo physicsVo){
         // 物理场接口
         PhysicsEnum physicsEnum = physicsVo.getPhysics();
         String physicsTag = TagUtil.uniqueTag(physicsEnum.getTag());
@@ -78,7 +65,14 @@ public class PhysicsHandler extends AbstractHandler {
      */
     private void addPhysicsFeature(GeomSequence geom, Physics physics, PhysicsFeatureVo featureVo){
         String featureTag = TagUtil.uniqueTag(featureVo.getFeature());
-        PhysicsFeature physicsFeature = physics.create(featureTag, featureVo.getFeature(), featureVo.getSelect().getEntityDim());
+        PhysicsFeature physicsFeature;
+        if (StringUtil.isEmpty(featureVo.getParentTag())) {
+            // 父特征
+            physicsFeature = physics.feature(featureVo.getParentTag()).create(featureTag, featureVo.getFeature(), featureVo.getSelect().getEntityDim());
+        } else {
+            physicsFeature = physics.create(featureTag, featureVo.getFeature(), featureVo.getSelect().getEntityDim());
+        }
+
         // 设置物理场特征参数
         setProperties(physicsFeature, featureVo.getProperties());
         // 选择对象
