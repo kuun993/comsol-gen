@@ -8,6 +8,7 @@ import com.comsol.gen.util.TagUtil;
 /**
  * @author waani
  * @date 2023/10/9 10:26
+ * @email kuun993@163.com
  * @description 球选择
  */
 public class BallSelect extends AbstractSelect {

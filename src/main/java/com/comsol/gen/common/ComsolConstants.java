@@ -3,6 +3,7 @@ package com.comsol.gen.common;
 /**
  * @author waani
  * @date 2023/9/27 17:21
+ * @email kuun993@163.com
  * @description TODO
  */
 public class ComsolConstants {

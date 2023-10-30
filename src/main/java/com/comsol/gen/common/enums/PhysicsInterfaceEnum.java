@@ -4,6 +4,7 @@ package com.comsol.gen.common.enums;
 /**
  * @author waani
  * @date 2023/10/7 9:39
+ * @email kuun993@163.com
  * @description 物理场接口类型
  *
  */

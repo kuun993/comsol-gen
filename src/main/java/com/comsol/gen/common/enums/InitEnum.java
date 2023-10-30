@@ -3,6 +3,7 @@ package com.comsol.gen.common.enums;
 /**
  * @author waani
  * @date 2023/10/13 15:27
+ * @email kuun993@163.com
  * @description 初始化
  */
 public enum InitEnum {

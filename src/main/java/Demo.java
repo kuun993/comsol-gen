@@ -12,6 +12,7 @@ import com.comsol.model.*;
 /**
  * @author waani
  * @date 2023/10/9 11:07
+ * @email kuun993@163.com
  * @description TODO
  */
 public class Demo {

@@ -6,6 +6,7 @@ import lombok.Getter;
 /**
  * @author waani
  * @date 2023/10/20 09:40
+ * @email kuun993@163.com
  * @description comsol 物理场接口
  */
 @Getter

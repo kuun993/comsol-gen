@@ -3,7 +3,7 @@ package com.comsol.gen.util;
 import java.util.Collection;
 
 /**
- * @author chenbingkun
+ * @author waani
  * @date 2023/10/30 10:32
  * @email kuun993@163.com
  * @description TODO

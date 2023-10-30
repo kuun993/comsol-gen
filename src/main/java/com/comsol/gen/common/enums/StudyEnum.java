@@ -5,6 +5,7 @@ package com.comsol.gen.common.enums;
 /**
  * @author waani
  * @date 2023/10/7 14:52
+ * @email kuun993@163.com
  * @description TODO
  */
 

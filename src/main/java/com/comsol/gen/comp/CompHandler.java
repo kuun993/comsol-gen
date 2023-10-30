@@ -8,6 +8,7 @@ import com.comsol.gen.util.TagUtil;
 /**
  * @author waani
  * @date 2023/9/27 17:26
+ * @email kuun993@163.com
  * @description component 组件处理器
  */
 @Deprecated

@@ -8,7 +8,7 @@ import com.comsol.model.ModelNode;
 import java.util.List;
 
 /**
- * @author chenbingkun
+ * @author waani
  * @date 2023/10/30 14:24
  * @email kuun993@163.com
  * @description TODO

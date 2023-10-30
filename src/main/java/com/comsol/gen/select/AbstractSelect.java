@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * @author waani
  * @date 2023/10/9 15:04
+ * @email kuun993@163.com
  * @description 选择对象
  */
 public abstract class AbstractSelect {

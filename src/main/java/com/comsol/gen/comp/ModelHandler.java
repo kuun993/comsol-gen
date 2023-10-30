@@ -8,6 +8,7 @@ import com.comsol.gen.common.ComsolConstants;
 /**
  * @author waani
  * @date 2023/10/13 14:45
+ * @email kuun993@163.com
  * @description TODO
  */
 public class ModelHandler {

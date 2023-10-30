@@ -8,6 +8,7 @@ import com.comsol.gen.util.TagUtil;
 /**
  * @author waani
  * @date 2023/10/9 15:03
+ * @email kuun993@163.com
  * @description 框选择
  */
 public class BoxSelect extends AbstractSelect {

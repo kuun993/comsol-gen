@@ -7,6 +7,7 @@ import java.io.Serializable;
 /**
  * @author waani
  * @date 2023/10/16 10:52
+ * @email kuun993@163.com
  * @description 坐标
  */
 @Getter

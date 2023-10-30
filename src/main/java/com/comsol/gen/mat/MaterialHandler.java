@@ -11,6 +11,7 @@ import com.comsol.gen.util.TagUtil;
 /**
  * @author waani
  * @date 2023/10/13 15:44
+ * @email kuun993@163.com
  * @description TODO
  */
 public class MaterialHandler extends AbstractHandler implements HandlerInterface<MaterialVo> {

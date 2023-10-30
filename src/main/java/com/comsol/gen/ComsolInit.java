@@ -14,6 +14,7 @@ import com.comsol.gen.common.enums.PhysicsInterfaceEnum;
 /**
  * @author waani
  * @date 2023/10/7 10:52
+ * @email kuun993@163.com
  * @description 模型初始化
  *
  * 1、空间维度：三维

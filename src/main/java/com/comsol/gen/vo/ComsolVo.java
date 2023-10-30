@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * @author waani
  * @date 2023/10/16 16:13
+ * @email kuun993@163.com
  * @description comsol模型参数
  */
 @Getter

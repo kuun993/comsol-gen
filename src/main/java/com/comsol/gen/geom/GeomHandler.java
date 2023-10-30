@@ -11,6 +11,7 @@ import com.comsol.model.ModelNode;
 /**
  * @author waani
  * @date 2023/9/27 17:26
+ * @email kuun993@163.com
  * @description 几何处理器
  */
 public class GeomHandler {

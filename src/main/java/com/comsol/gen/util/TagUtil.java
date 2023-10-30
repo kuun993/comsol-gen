@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @author waani
  * @date 2023/10/13 14:23
+ * @email kuun993@163.com
  * @description TagUtil 标签工具
  */
 public class TagUtil {

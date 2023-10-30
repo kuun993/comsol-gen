@@ -1,7 +1,7 @@
 package com.comsol.gen.util;
 
 /**
- * @author chenbingkun
+ * @author waani
  * @date 2023/10/30 10:22
  * @email kuun993@163.com
  * @description TODO
