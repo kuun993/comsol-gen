@@ -34,6 +34,11 @@
             <version>1.18.26</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.comsol</groupId>
+            <artifactId>solver</artifactId>
+            <version>1.0.0</version>
+        </dependency>
 
     </dependencies>
 

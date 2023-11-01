@@ -55,4 +55,10 @@ public class GeomVo {
     private double repairTol;
 
 
+    /**
+     * 自动创建对
+     */
+    private boolean createPairs;
+
+
 }

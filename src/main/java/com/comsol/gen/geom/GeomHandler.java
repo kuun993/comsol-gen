@@ -29,7 +29,7 @@ public class GeomHandler {
      *  1. 导入stp文件
      *  2. 形成 联合体 or 自动装配
      *  3. 构建导入的几何对象
-     * @param geom
+     * @param modelNode
      * @param geomVo
      */
     public void geomImport(ModelNode modelNode, GeomVo geomVo) {
@@ -80,6 +80,10 @@ public class GeomHandler {
         if ("relative".equals(geomVo.getRepairTolType())) {
             fin.set("repairtol", geomVo.getRepairTol());
         }
+
+        fin.set("isCreatePairs", geomVo.isCreatePairs());
+
+
     }
 
 
