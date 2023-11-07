@@ -61,4 +61,17 @@ public class GeomVo {
     private boolean createPairs;
 
 
+
+    public static GeomVo build(String stpFilePath) {
+        GeomVo geomVo = new GeomVo();
+        geomVo.setStpFilePath(stpFilePath);
+        geomVo.setImportTol(1e-7);
+        geomVo.setAction("assembly");
+        geomVo.setRepairTolType("relative");
+        geomVo.setRepairTol(1e-7);
+        geomVo.setCreatePairs(true);
+        return geomVo;
+    }
+
+
 }

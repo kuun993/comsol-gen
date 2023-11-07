@@ -18,10 +18,9 @@ import java.util.Map;
 @ToString
 public class SolverVo {
 
-    private String studyTag;
+    private String stdTag;
 
     private String solverTag;
-
 
     private List<SolFeatureVo> solFeatureVos;
 

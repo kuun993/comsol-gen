@@ -25,4 +25,12 @@ public class SizeVo implements Serializable {
 
     private SelectVo select;
 
+
+    public static SizeVo build() {
+        SizeVo sizeVo = new SizeVo();
+        sizeVo.max = 0.005;
+        sizeVo.min = 0.001;
+        return sizeVo;
+    }
+
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,4 +36,21 @@ public class MeshVo extends BaseVo implements Serializable {
     public String getType() {
         return "FreeTet";
     }
+
+
+
+    public static MeshVo build() {
+        MeshVo meshVo = new MeshVo();
+        meshVo.type = "FreeTet";
+        meshVo.max = 0.005;
+        meshVo.min = 0.001;
+
+        List<SizeVo> sizeVos = new ArrayList<>(1);
+        sizeVos.add(SizeVo.build());
+        meshVo.sizes = sizeVos;
+
+        return meshVo;
+    }
+
+
 }

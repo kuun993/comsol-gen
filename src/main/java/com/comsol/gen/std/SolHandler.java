@@ -130,221 +130,6 @@ public class SolHandler {
         sol.attach(stdTag);
     }
 
-    private void heatTransfer(Model model, String stdTag) {
-
-
-        model.sol().create("sol1");
-        model.sol("sol1").study(stdTag);
-
-
-        List<SolFeatureVo> solFeatureVos = new ArrayList<>();
-
-
-//        model.sol("sol1").create("st1", "StudyStep");
-//        model.sol("sol1").feature("st1").set("study", "std1");
-//        model.sol("sol1").feature("st1").set("studystep", "time");
-        SolFeatureVo studyStep = new SolFeatureVo("StudyStep");
-        Map<String, Object> studyStepMap = new HashMap<>(2);
-        studyStep.setProperties(studyStepMap);
-        studyStepMap.put("study", "std1");
-        studyStepMap.put("studystep", "time");
-
-        solFeatureVos.add(studyStep);
-
-
-//        model.sol("sol1").create("v1", "Variables");
-//        model.sol("sol1").feature("v1").set("control", "time");
-        SolFeatureVo variables = new SolFeatureVo("Variables");
-        Map<String, Object> variablesMap = new HashMap<>(2);
-        variables.setProperties(variablesMap);
-        variablesMap.put("control", "time");
-
-        solFeatureVos.add(variables);
-
-//        model.sol("sol1").create("t1", "Time");
-//        model.sol("sol1").feature("t1").set("tlist", "range(0,0.1,1)");
-//        model.sol("sol1").feature("t1").set("plot", "off");
-//        model.sol("sol1").feature("t1").set("plotgroup", "Default");
-//        model.sol("sol1").feature("t1").set("plotfreq", "tout");
-//        model.sol("sol1").feature("t1").set("probesel", "all");
-//        model.sol("sol1").feature("t1").set("probes", new String[]{});
-//        model.sol("sol1").feature("t1").set("probefreq", "tsteps");
-//        model.sol("sol1").feature("t1").set("atolglobalvaluemethod", "factor");
-//        model.sol("sol1").feature("t1").set("atolmethod", new String[]{"comp1_T", "global"});
-//        model.sol("sol1").feature("t1").set("atol", new String[]{"comp1_T", "1e-3"});
-//        model.sol("sol1").feature("t1").set("atolvaluemethod", new String[]{"comp1_T", "factor"});
-//        model.sol("sol1").feature("t1").set("endtimeinterpolation", true);
-//        model.sol("sol1").feature("t1").set("estrat", "exclude");
-//        model.sol("sol1").feature("t1").set("maxorder", 2);
-//        model.sol("sol1").feature("t1").set("control", "time");
-        SolFeatureVo time = new SolFeatureVo("Time");
-        Map<String, Object> timeMap = new HashMap<>(16);
-        time.setProperties(timeMap);
-        timeMap.put("tlist", "range(0,0.1,1)");
-        timeMap.put("plot", "off");
-        timeMap.put("plotgroup", "Default");
-        timeMap.put("plotfreq", "tout");
-        timeMap.put("probesel", "all");
-        timeMap.put("probes", new String[]{});
-        timeMap.put("probefreq", "tsteps");
-        timeMap.put("atolglobalvaluemethod", "factor");
-        timeMap.put("atolmethod", new String[]{"comp1_T", "global"});
-        timeMap.put("atol", new String[]{"comp1_T", "1e-3"});
-        timeMap.put("atolvaluemethod", new String[]{"comp1_T", "factor"});
-        timeMap.put("endtimeinterpolation", true);
-        timeMap.put("estrat", "exclude");
-        timeMap.put("maxorder", 2);
-        timeMap.put("control", "time");
-
-        solFeatureVos.add(time);
-
-
-//        model.sol("sol1").feature("t1").create("fc1", "FullyCoupled");
-//        model.sol("sol1").feature("t1").feature("fc1").set("jtech", "once");
-//        model.sol("sol1").feature("t1").feature("fc1").set("damp", 0.9);
-//        model.sol("sol1").feature("t1").feature("fc1").set("stabacc", "aacc");
-//        model.sol("sol1").feature("t1").feature("fc1").set("aaccdim", 5);
-//        model.sol("sol1").feature("t1").feature("fc1").set("aaccmix", 0.9);
-//        model.sol("sol1").feature("t1").feature("fc1").set("aaccdelay", 1);
-        SolFeatureVo fullyCoupled = new SolFeatureVo("FullyCoupled");
-        fullyCoupled.setSolverFeatureTags(new String[]{"t1"});
-        Map<String, Object> fullyCoupledMap = new HashMap<>(16);
-        fullyCoupled.setProperties(fullyCoupledMap);
-        fullyCoupledMap.put("jtech", "once");
-        fullyCoupledMap.put("damp", 0.9);
-        fullyCoupledMap.put("stabacc", "aacc");
-        fullyCoupledMap.put("aaccdim", 5);
-        fullyCoupledMap.put("aaccmix", 0.9);
-        fullyCoupledMap.put("aaccdelay", 1);
-
-        solFeatureVos.add(fullyCoupled);
-
-//        model.sol("sol1").feature("t1").create("d1", "Direct");
-//        model.sol("sol1").feature("t1").feature("d1").set("linsolver", "pardiso");
-//        model.sol("sol1").feature("t1").feature("d1").set("pivotperturb", 1.0E-13);
-//        model.sol("sol1").feature("t1").feature("d1").label("Direct (ht)");
-        SolFeatureVo direct = new SolFeatureVo("Direct");
-        direct.setSolverFeatureTags(new String[]{"t1"});
-        direct.setSolverLabel("Direct (ht)");
-        Map<String, Object> directMap = new HashMap<>(16);
-        direct.setProperties(directMap);
-        directMap.put("linsolver", "pardiso");
-        directMap.put("pivotperturb", 1.0E-13);
-
-        solFeatureVos.add(direct);
-
-
-//        model.sol("sol1").feature("t1").create("i1", "Iterative");
-//        model.sol("sol1").feature("t1").feature("i1").set("linsolver", "gmres");
-//        model.sol("sol1").feature("t1").feature("i1").set("prefuntype", "left");
-//        model.sol("sol1").feature("t1").feature("i1").set("itrestart", 50);
-//        model.sol("sol1").feature("t1").feature("i1").set("rhob", 20);
-//        model.sol("sol1").feature("t1").feature("i1").set("maxlinit", 10000);
-//        model.sol("sol1").feature("t1").feature("i1").set("nlinnormuse", "on");
-//        model.sol("sol1").feature("t1").feature("i1").label("Iterative AMG (ht)");
-        SolFeatureVo iterative = new SolFeatureVo("Iterative");
-        iterative.setSolverFeatureTags(new String[]{"t1"});
-        iterative.setSolverLabel("Iterative AMG (ht)");
-        Map<String, Object> iterativeMap = new HashMap<>(16);
-        iterative.setProperties(iterativeMap);
-        iterativeMap.put("linsolver", "gmres");
-        iterativeMap.put("prefuntype", "left");
-        iterativeMap.put("itrestart", 50);
-        iterativeMap.put("rhob", 20);
-        iterativeMap.put("maxlinit", 10000);
-        iterativeMap.put("nlinnormuse", "on");
-
-        solFeatureVos.add(iterative);
-        
-//        model.sol("sol1").feature("t1").feature("i1").create("mg1", "Multigrid");
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").set("prefun", "saamg");
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").set("mgcycle", "v");
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").set("maxcoarsedof", 50000);
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").set("strconn", 0.01);
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").set("nullspace", "constant");
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").set("usesmooth", false);
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").set("saamgcompwise", true);
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").set("loweramg", true);
-        SolFeatureVo multiGrid = new SolFeatureVo("Multigrid");
-        multiGrid.setSolverFeatureTags(new String[]{"t1", "i1"});
-        Map<String, Object> multiGridMap = new HashMap<>(16);
-        multiGrid.setProperties(multiGridMap);
-        multiGridMap.put("prefun", "saamg");
-        multiGridMap.put("mgcycle", "v");
-        multiGridMap.put("maxcoarsedof", 50000);
-        multiGridMap.put("strconn", 0.01);
-        multiGridMap.put("nullspace", "constant");
-        multiGridMap.put("usesmooth", false);
-        multiGridMap.put("saamgcompwise", true);
-        multiGridMap.put("loweramg", true);
-
-        solFeatureVos.add(multiGrid);
-        
-        
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").feature("pr").create("so1", "SOR");
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").feature("pr").feature("so1").set("iter", 2);
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").feature("pr").feature("so1").set("relax", 0.9);
-        SolFeatureVo prSor = new SolFeatureVo("SOR");
-        multiGrid.setSolverFeatureTags(new String[]{"t1", "i1", "mg1", "pr"});
-        Map<String, Object> prSorMap = new HashMap<>(16);
-        prSor.setProperties(prSorMap);
-        prSorMap.put("iter", 2);
-        prSorMap.put("relax", 0.9);
-
-        solFeatureVos.add(prSor);
-
-
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").feature("po").create("so1", "SOR");
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").feature("po").feature("so1").set("iter", 2);
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").feature("po").feature("so1").set("relax", 0.9);
-        SolFeatureVo poSor = new SolFeatureVo("SOR");
-        multiGrid.setSolverFeatureTags(new String[]{"t1", "i1", "mg1", "po"});
-        Map<String, Object> poSorMap = new HashMap<>(16);
-        poSor.setProperties(poSorMap);
-        poSorMap.put("iter", 2);
-        poSorMap.put("relax", 0.9);
-
-        solFeatureVos.add(poSor);
-
-
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").feature("cs").create("d1", "Direct");
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").feature("cs").feature("d1").set("linsolver", "pardiso");
-//        model.sol("sol1").feature("t1").feature("i1").feature("mg1").feature("cs").feature("d1").set("pivotperturb", 1.0E-13);
-        SolFeatureVo csDirect = new SolFeatureVo("Direct");
-        multiGrid.setSolverFeatureTags(new String[]{"t1", "i1", "mg1", "cs"});
-        Map<String, Object> csDirectMap = new HashMap<>(16);
-        csDirect.setProperties(csDirectMap);
-        csDirectMap.put("linsolver", "pardiso");
-        csDirectMap.put("pivotperturb", 1.0E-13);
-
-        solFeatureVos.add(csDirect);
-        
-        
-//        model.sol("sol1").feature("t1").feature("fc1").set("linsolver", "d1");
-//        model.sol("sol1").feature("t1").feature("fc1").set("jtech", "once");
-//        model.sol("sol1").feature("t1").feature("fc1").set("damp", 0.9);
-//        model.sol("sol1").feature("t1").feature("fc1").set("stabacc", "aacc");
-//        model.sol("sol1").feature("t1").feature("fc1").set("aaccdim", 5);
-//        model.sol("sol1").feature("t1").feature("fc1").set("aaccmix", 0.9);
-//        model.sol("sol1").feature("t1").feature("fc1").set("aaccdelay", 1);
-        SolFeatureVo fullyCoupled2 = new SolFeatureVo("FullyCoupled", true);
-        fullyCoupled2.setSolverFeatureTags(new String[]{"t1"});
-        Map<String, Object> fullyCoupled2Map = new HashMap<>(16);
-        fullyCoupled2.setProperties(fullyCoupled2Map);
-        fullyCoupled2Map.put("linsolver", "d1");
-        fullyCoupled2Map.put("jtech", "once");
-        fullyCoupled2Map.put("damp", 0.9);
-        fullyCoupled2Map.put("stabacc", "aacc");
-        fullyCoupled2Map.put("aaccdim", 5);
-        fullyCoupled2Map.put("aaccmix", 0.9);
-        fullyCoupled2Map.put("aaccdelay", 1);
-
-        solFeatureVos.add(fullyCoupled2);
-
-        model.sol("sol1").feature("t1").feature().remove("fcDef");
-        model.sol("sol1").attach("std1");
-    }
-
     private void createSHTTimeSolver(Model model, String stdTag) {
 
         model.sol().create("sol1");
@@ -456,15 +241,157 @@ public class SolHandler {
         model.sol("sol1").attach("std1");
     }
 
+    private SolverVo heatTransfer(String stdTag) {
+        SolverVo solverVo = new SolverVo();
+        List<SolFeatureVo> solFeatureVos = new ArrayList<>();
+        solverVo.setSolFeatureVos(solFeatureVos);
+        solverVo.setStdTag(stdTag);
+
+        SolFeatureVo studyStep = new SolFeatureVo("StudyStep");
+        Map<String, Object> studyStepMap = new HashMap<>(2);
+        studyStep.setProperties(studyStepMap);
+        studyStepMap.put("study", stdTag);
+        studyStepMap.put("studystep", "time");
+        solFeatureVos.add(studyStep);
+
+
+        SolFeatureVo variables = new SolFeatureVo("Variables");
+        Map<String, Object> variablesMap = new HashMap<>(2);
+        variables.setProperties(variablesMap);
+        variablesMap.put("control", "time");
+        solFeatureVos.add(variables);
+
+
+        SolFeatureVo time = new SolFeatureVo("Time");
+        String timeTag = time.getSolverFeatureTag();
+        Map<String, Object> timeMap = new HashMap<>(16);
+        time.setProperties(timeMap);
+        timeMap.put("tlist", "range(0,0.1,1)");
+        timeMap.put("plot", "off");
+        timeMap.put("plotgroup", "Default");
+        timeMap.put("plotfreq", "tout");
+        timeMap.put("probesel", "all");
+        timeMap.put("probes", new String[]{});
+        timeMap.put("probefreq", "tsteps");
+        timeMap.put("atolglobalvaluemethod", "factor");
+        timeMap.put("atolmethod", new String[]{"comp1_T", "global"});
+        timeMap.put("atol", new String[]{"comp1_T", "1e-3"});
+        timeMap.put("atolvaluemethod", new String[]{"comp1_T", "factor"});
+        timeMap.put("endtimeinterpolation", true);
+        timeMap.put("estrat", "exclude");
+        timeMap.put("maxorder", 2);
+        timeMap.put("control", "time");
+        solFeatureVos.add(time);
+
+
+        SolFeatureVo fullyCoupled = new SolFeatureVo("FullyCoupled");
+        fullyCoupled.setSolverFeatureTags(new String[]{timeTag});
+        Map<String, Object> fullyCoupledMap = new HashMap<>(16);
+        fullyCoupled.setProperties(fullyCoupledMap);
+        fullyCoupledMap.put("jtech", "once");
+        fullyCoupledMap.put("damp", 0.9);
+        fullyCoupledMap.put("stabacc", "aacc");
+        fullyCoupledMap.put("aaccdim", 5);
+        fullyCoupledMap.put("aaccmix", 0.9);
+        fullyCoupledMap.put("aaccdelay", 1);
+        solFeatureVos.add(fullyCoupled);
+
+
+        SolFeatureVo direct = new SolFeatureVo("Direct");
+        direct.setSolverFeatureTags(new String[]{timeTag});
+        direct.setSolverLabel("Direct (ht)");
+        Map<String, Object> directMap = new HashMap<>(16);
+        direct.setProperties(directMap);
+        directMap.put("linsolver", "pardiso");
+        directMap.put("pivotperturb", 1.0E-13);
+        solFeatureVos.add(direct);
+
+
+        SolFeatureVo iterative = new SolFeatureVo("Iterative");
+        String iterativeTag = iterative.getSolverFeatureTag();
+        iterative.setSolverFeatureTags(new String[]{timeTag});
+        iterative.setSolverLabel("Iterative AMG (ht)");
+        Map<String, Object> iterativeMap = new HashMap<>(16);
+        iterative.setProperties(iterativeMap);
+        iterativeMap.put("linsolver", "gmres");
+        iterativeMap.put("prefuntype", "left");
+        iterativeMap.put("itrestart", 50);
+        iterativeMap.put("rhob", 20);
+        iterativeMap.put("maxlinit", 10000);
+        iterativeMap.put("nlinnormuse", "on");
+        solFeatureVos.add(iterative);
+        
+
+        SolFeatureVo multiGrid = new SolFeatureVo("Multigrid");
+        String multiGridTag = multiGrid.getSolverFeatureTag();
+        multiGrid.setSolverFeatureTags(new String[]{timeTag, iterativeTag});
+        Map<String, Object> multiGridMap = new HashMap<>(16);
+        multiGrid.setProperties(multiGridMap);
+        multiGridMap.put("prefun", "saamg");
+        multiGridMap.put("mgcycle", "v");
+        multiGridMap.put("maxcoarsedof", 50000);
+        multiGridMap.put("strconn", 0.01);
+        multiGridMap.put("nullspace", "constant");
+        multiGridMap.put("usesmooth", false);
+        multiGridMap.put("saamgcompwise", true);
+        multiGridMap.put("loweramg", true);
+        solFeatureVos.add(multiGrid);
+        
+
+        SolFeatureVo prSor = new SolFeatureVo("SOR");
+        prSor.setSolverFeatureTags(new String[]{timeTag, iterativeTag, multiGridTag, "pr"});
+        Map<String, Object> prSorMap = new HashMap<>(16);
+        prSor.setProperties(prSorMap);
+        prSorMap.put("iter", 2);
+        prSorMap.put("relax", 0.9);
+        solFeatureVos.add(prSor);
+
+
+        SolFeatureVo poSor = new SolFeatureVo("SOR");
+        poSor.setSolverFeatureTags(new String[]{timeTag, iterativeTag, multiGridTag, "po"});
+        Map<String, Object> poSorMap = new HashMap<>(16);
+        poSor.setProperties(poSorMap);
+        poSorMap.put("iter", 2);
+        poSorMap.put("relax", 0.9);
+        solFeatureVos.add(poSor);
+
+
+        SolFeatureVo csDirect = new SolFeatureVo("Direct");
+        csDirect.setSolverFeatureTags(new String[]{timeTag, iterativeTag, multiGridTag, "cs"});
+        Map<String, Object> csDirectMap = new HashMap<>(16);
+        csDirect.setProperties(csDirectMap);
+        csDirectMap.put("linsolver", "pardiso");
+        csDirectMap.put("pivotperturb", 1.0E-13);
+        solFeatureVos.add(csDirect);
+
+
+        SolFeatureVo fullyCoupled2 = new SolFeatureVo("FullyCoupled", true);
+        fullyCoupled2.setSolverFeatureTags(new String[]{timeTag});
+        Map<String, Object> fullyCoupled2Map = new HashMap<>(16);
+        fullyCoupled2.setProperties(fullyCoupled2Map);
+        fullyCoupled2Map.put("linsolver", "d1");
+        fullyCoupled2Map.put("jtech", "once");
+        fullyCoupled2Map.put("damp", 0.9);
+        fullyCoupled2Map.put("stabacc", "aacc");
+        fullyCoupled2Map.put("aaccdim", 5);
+        fullyCoupled2Map.put("aaccmix", 0.9);
+        fullyCoupled2Map.put("aaccdelay", 1);
+        solFeatureVos.add(fullyCoupled2);
+
+        return solverVo;
+    }
+
+
+
 
 
 
     private void solver(Model model, SolverVo solverVo) {
-        String solverTag = solverVo.getSolverTag();
-        String studyTag = solverVo.getStudyTag();
+        String solTag = solverVo.getSolverTag();
+        String stdTag = solverVo.getStdTag();
 
-        SolverSequence sol = model.sol().create(solverTag);
-        model.sol(solverTag).study(studyTag);
+        SolverSequence sol = model.sol().create(solTag);
+        model.sol(solTag).study(stdTag);
 
         List<SolFeatureVo> solFeatureVos = solverVo.getSolFeatureVos();
 
@@ -474,7 +401,9 @@ public class SolHandler {
         }
 
 //        model.sol("sol1").feature("t1").feature().remove("fcDef");
-        sol.attach(studyTag);
+        // TODO
+        sol.feature("t1").feature().remove("fcDef");
+        sol.attach(stdTag);
 
     }
 

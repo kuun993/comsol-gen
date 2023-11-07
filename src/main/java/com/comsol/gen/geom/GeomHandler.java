@@ -32,7 +32,7 @@ public class GeomHandler {
      * @param modelNode
      * @param geomVo
      */
-    public void geomImport(ModelNode modelNode, GeomVo geomVo) {
+    public GeomSequence geomImport(ModelNode modelNode, GeomVo geomVo) {
         // 创建组件几何
         String geomTag = TagUtil.geomTag();
         GeomSequence geomSequence = modelNode.geom().create(geomTag, GeometryDimension);
@@ -48,6 +48,8 @@ public class GeomHandler {
 
         // 构建导入的几何对象
         run(geomSequence, impTag);
+
+        return geomSequence;
     }
 
 

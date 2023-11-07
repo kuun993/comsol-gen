@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,6 +45,20 @@ public class SelectVo implements Serializable {
      */
     public Integer getEntityDim() {
         return entityDim==null? 3: entityDim;
+    }
+
+
+    public SelectVo() {}
+
+
+    public SelectVo(boolean all) {
+        this.all = all;
+    }
+
+    public SelectVo(double x, double y, double z) {
+        List<CoordinateVo> coordinateVos = new ArrayList<>(1);
+        coordinateVos.add(new CoordinateVo(x, y, z));
+        this.coordinateVos = coordinateVos;
     }
 
 }
