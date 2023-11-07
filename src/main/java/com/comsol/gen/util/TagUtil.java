@@ -14,7 +14,24 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class TagUtil {
 
-    private static Map<String, AtomicInteger> _TAG = new HashMap<>();
+    private static final Map<String, AtomicInteger> _TAG = new HashMap<>();
+
+
+    /**
+     * Type of feature.
+     * Feature tag.
+     */
+    private static final Map<String, String> _ABBR = new HashMap<>();
+
+
+    static {
+        _ABBR.put("SOR", "so");
+        _ABBR.put("StudyStep", "st");
+        _ABBR.put("Multigrid", "mg");
+    }
+
+
+
 
     /**
      * 生成标签
@@ -64,5 +81,40 @@ public class TagUtil {
     public static String cselTag() {
         return uniqueTag(ComsolConstants.CSEL_TAG);
     }
+
+
+    /**
+     * 缩写
+     * @param str
+     * @return
+     */
+    public static String abbr(String str){
+        if (_ABBR.containsKey(str)) {
+            return _ABBR.get(str);
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(Character.toLowerCase(str.charAt(0)));
+        for (int i = 1; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (Character.isUpperCase(c)) {
+                stringBuilder.append(Character.toLowerCase(c));
+            }
+        }
+        String abbr;
+        _ABBR.put(str, (abbr = stringBuilder.toString()));
+        return abbr;
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(abbr("Multigrid"));
+        System.out.println(abbr("Multigrid"));
+        System.out.println(abbr("SOR"));
+        System.out.println(abbr("Direct"));
+        System.out.println(abbr("Iterative"));
+        System.out.println(abbr("FullyCoupled"));
+        System.out.println(abbr("StudyStep"));
+    }
+
 
 }

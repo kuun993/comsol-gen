@@ -1,6 +1,7 @@
 package com.comsol.gen.util;
 
 import java.util.Collection;
+import java.util.Map;
 
 /**
  * @author waani
@@ -15,6 +16,11 @@ public class CollectionUtil {
             return false;
         }
         return true;
+    }
+
+
+    public static boolean isEmpty(Map<?, ?> map) {
+        return (map == null || map.isEmpty());
     }
 
 }

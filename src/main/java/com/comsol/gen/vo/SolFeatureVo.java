@@ -1,9 +1,11 @@
 package com.comsol.gen.vo;
 
+import com.comsol.gen.util.TagUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,24 +19,47 @@ import java.util.Map;
 @ToString
 public class SolFeatureVo {
 
+    /**
+     * solverFeatureTag
+     */
+    private String solverFeatureTag;
+
+    /**
+     * solverFeature
+     */
     private String solverFeature;
 
-    private Map<String, Object> param;
+    /**
+     * solverLabel
+     */
+    private String solverLabel;
 
-    private SolFeatureVo solFeature;
+    /**
+     * properties
+     */
+    private Map<String, Object> properties;
 
+    /**
+     * solverFeatureTags
+     */
+    private String[] solverFeatureTags;
+
+    /**
+     * exist
+     */
     private boolean exist;
-
 
     public SolFeatureVo() {}
 
     public SolFeatureVo(String solverFeature) {
         this.solverFeature = solverFeature;
+        this.solverFeatureTag = TagUtil.abbr(solverFeature);
     }
 
     public SolFeatureVo(String solverFeature, boolean exist) {
         this.solverFeature = solverFeature;
         this.exist = exist;
+        this.solverFeatureTag = TagUtil.abbr(solverFeature);
     }
 
 }
