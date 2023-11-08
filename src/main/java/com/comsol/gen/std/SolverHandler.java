@@ -467,7 +467,7 @@ public class SolverHandler {
         // TODO
         sol.feature("t1").feature().remove("fcDef");
         sol.attach(stdTag);
-
+        sol.runAll();
     }
 
 
