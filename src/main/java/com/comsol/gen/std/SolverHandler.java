@@ -1,5 +1,7 @@
 package com.comsol.gen.std;
 
+import com.comsol.gen.common.enums.PhysicsEnum;
+import com.comsol.gen.common.enums.StudyEnum;
 import com.comsol.gen.util.CollectionUtil;
 import com.comsol.gen.util.TagUtil;
 import com.comsol.gen.vo.SolFeatureVo;
@@ -7,6 +9,7 @@ import com.comsol.gen.vo.SolverVo;
 import com.comsol.model.Model;
 import com.comsol.model.SolverFeature;
 import com.comsol.model.SolverSequence;
+import lombok.extern.java.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +22,10 @@ import java.util.Map;
  * @email kuun993@163.com
  * @description TODO
  */
-public class SolHandler {
+@Log
+public class SolverHandler {
+
+
 
 
     /**
@@ -241,7 +247,68 @@ public class SolHandler {
         model.sol("sol1").attach("std1");
     }
 
-    private SolverVo heatTransfer(String stdTag) {
+
+
+
+
+
+    public void createSolver(Model model, String stdTag, StudyEnum studyEnum, PhysicsEnum physicsEnum) {
+        SolverVo solverVo = null;
+        switch (physicsEnum) {
+            case HeatTransfer: {
+                log.info("HeatTransfer");
+                switch (studyEnum) {
+                    case Transient: {
+                        log.info("Transient");
+                        solverVo = heatTransferTransient(stdTag);
+                        break;
+                    }
+                    case Stationary: {
+                        log.info("Stationary");
+                        break;
+                    }
+                }
+                break;
+            }
+            case SolidMechanics: {
+                log.info("SolidMechanics");
+                switch (studyEnum) {
+                    case Transient: {
+                        log.info("Transient");
+                        break;
+                    }
+                    case Stationary: {
+                        log.info("Stationary");
+                        break;
+                    }
+                }
+                break;
+            }
+            case HeatTransferInSolidsAndFluids: {
+                log.info("HeatTransferInSolidsAndFluids");
+                switch (studyEnum) {
+                    case Transient: {
+                        log.info("Transient");
+                        break;
+                    }
+                    case Stationary: {
+                        log.info("Stationary");
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        if (solverVo != null) {
+            solver(model, solverVo);
+        }
+    }
+
+
+
+
+
+    private SolverVo heatTransferTransient(String stdTag) {
         SolverVo solverVo = new SolverVo();
         List<SolFeatureVo> solFeatureVos = new ArrayList<>();
         solverVo.setSolFeatureVos(solFeatureVos);
@@ -338,7 +405,7 @@ public class SolHandler {
         solFeatureVos.add(multiGrid);
         
 
-        SolFeatureVo prSor = new SolFeatureVo("SOR");
+        SolFeatureVo prSor = new SolFeatureVo("SOR", "so1");
         prSor.setSolverFeatureTags(new String[]{timeTag, iterativeTag, multiGridTag, "pr"});
         Map<String, Object> prSorMap = new HashMap<>(16);
         prSor.setProperties(prSorMap);
@@ -347,7 +414,7 @@ public class SolHandler {
         solFeatureVos.add(prSor);
 
 
-        SolFeatureVo poSor = new SolFeatureVo("SOR");
+        SolFeatureVo poSor = new SolFeatureVo("SOR", "so1");
         poSor.setSolverFeatureTags(new String[]{timeTag, iterativeTag, multiGridTag, "po"});
         Map<String, Object> poSorMap = new HashMap<>(16);
         poSor.setProperties(poSorMap);
@@ -356,7 +423,7 @@ public class SolHandler {
         solFeatureVos.add(poSor);
 
 
-        SolFeatureVo csDirect = new SolFeatureVo("Direct");
+        SolFeatureVo csDirect = new SolFeatureVo("Direct", "d1");
         csDirect.setSolverFeatureTags(new String[]{timeTag, iterativeTag, multiGridTag, "cs"});
         Map<String, Object> csDirectMap = new HashMap<>(16);
         csDirect.setProperties(csDirectMap);
@@ -365,7 +432,7 @@ public class SolHandler {
         solFeatureVos.add(csDirect);
 
 
-        SolFeatureVo fullyCoupled2 = new SolFeatureVo("FullyCoupled", true);
+        SolFeatureVo fullyCoupled2 = new SolFeatureVo("FullyCoupled", fullyCoupled.getSolverFeatureTag(), true);
         fullyCoupled2.setSolverFeatureTags(new String[]{timeTag});
         Map<String, Object> fullyCoupled2Map = new HashMap<>(16);
         fullyCoupled2.setProperties(fullyCoupled2Map);
@@ -382,12 +449,8 @@ public class SolHandler {
     }
 
 
-
-
-
-
     private void solver(Model model, SolverVo solverVo) {
-        String solTag = solverVo.getSolverTag();
+        String solTag = TagUtil.solTag();
         String stdTag = solverVo.getStdTag();
 
         SolverSequence sol = model.sol().create(solTag);
@@ -437,8 +500,11 @@ public class SolHandler {
         if (CollectionUtil.isEmpty(properties)) {
             return;
         }
+        System.out.println("solverProperty solver=" + solver.tag());
+
         for (Map.Entry<String, Object> entry : properties.entrySet()) {
             Object value = entry.getValue();
+            System.out.println("solverProperty key=" + entry.getKey() + ", value=" + entry.getValue());
             if (value instanceof String) {
                 solver.set(entry.getKey(), (String) value);
             } else if (value instanceof String[]) {
@@ -450,8 +516,9 @@ public class SolHandler {
             } else if (value instanceof Boolean) {
                 solver.set(entry.getKey(), (boolean) value);
             }
-            solver.set(entry.getKey(), "");
         }
+
+
     }
 
 }

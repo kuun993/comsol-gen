@@ -53,13 +53,18 @@ public class SolFeatureVo {
 
     public SolFeatureVo(String solverFeature) {
         this.solverFeature = solverFeature;
-        this.solverFeatureTag = TagUtil.abbr(solverFeature);
+        this.solverFeatureTag = TagUtil.uniqueTag(TagUtil.abbr(solverFeature));
     }
 
-    public SolFeatureVo(String solverFeature, boolean exist) {
+    public SolFeatureVo(String solverFeature, String solverFeatureTag) {
         this.solverFeature = solverFeature;
+        this.solverFeatureTag = solverFeatureTag;
+    }
+
+    public SolFeatureVo(String solverFeature, String solverFeatureTag, boolean exist) {
+        this.solverFeature = solverFeature;
+        this.solverFeatureTag = solverFeatureTag;
         this.exist = exist;
-        this.solverFeatureTag = TagUtil.abbr(solverFeature);
     }
 
 }

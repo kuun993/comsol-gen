@@ -28,7 +28,7 @@ public abstract class AbstractSelect {
     /**
      * geom_cumulative_dom
      */
-    String SELECT_CUMULATIVE_NAMED_FORMAT = "%s_%s_dom";
+    String SELECT_CUMULATIVE_NAMED_FORMAT = "%s_%s_%s";
 
 
 
@@ -125,8 +125,8 @@ public abstract class AbstractSelect {
      * @param cSelTag
      * @return
      */
-    public String cumulativeSelectNamed(String geomTag, String cSelTag) {
-        return String.format(SELECT_CUMULATIVE_NAMED_FORMAT, geomTag, cSelTag);
+    public String cumulativeSelectNamed(String geomTag, String cSelTag, String abbr) {
+        return String.format(SELECT_CUMULATIVE_NAMED_FORMAT, geomTag, cSelTag, abbr);
     }
 
 
@@ -162,15 +162,16 @@ public abstract class AbstractSelect {
      * @return
      */
     public String select(int entityDim, GeomSequence geom, List<CoordinateVo> coordinateVos) {
-        // 累积选择
+        // 创建累积选择
         String cSelTag = this.cumulativeSelectTag();
+        CumulativeSelect.createCumulativeSelect(geom, cSelTag, cSelTag);
         // 创建选择并关联到累积选择
         for (CoordinateVo coordinateVo : coordinateVos) {
             String selectTag = this.selectTag();
             GeomFeature select = this.createSelect(entityDim, geom, selectTag, coordinateVo);
             this.cumulativeSelect(cSelTag, select);
         }
-        return String.format(SELECT_CUMULATIVE_NAMED_FORMAT, geom.tag(), cSelTag);
+        return cumulativeSelectNamed(geom.tag(), cSelTag, EntityDimEnum.values()[entityDim].getAbbr());
     }
 
 

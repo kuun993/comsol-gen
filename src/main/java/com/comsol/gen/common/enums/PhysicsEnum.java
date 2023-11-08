@@ -17,18 +17,18 @@ public enum PhysicsEnum {
     /**
      * 固体传热
      */
-    HeatTransfer("HeatTransfer", "ht", "Heat_physics"),
+    HeatTransfer("HeatTransfer", "ht", "Heat_physics", new String[]{"/physics/ht"}),
 
     /**
      * 固体力学
      */
-    SolidMechanics("SolidMechanics", "solid", "Solid_physics"),
+    SolidMechanics("SolidMechanics", "solid", "Solid_physics", new String[]{"/physics/solid"}),
 
 
     /**
      * 固体和流体传热
      */
-    HeatTransferInSolidsAndFluids("HeatTransferInSolidsAndFluids", "ht", "Solid_physics"),
+    HeatTransferInSolidsAndFluids("HeatTransferInSolidsAndFluids", "ht", "Solid_physics", new String[]{"/physics/ht", "/physics/solid"}),
 
     ;
 
@@ -39,6 +39,7 @@ public enum PhysicsEnum {
 
     private final String multiTag;
 
+    private final String[] solveFor;
 
 
     public static String getTag(String physics){

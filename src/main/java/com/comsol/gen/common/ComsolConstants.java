@@ -53,6 +53,12 @@ public class ComsolConstants {
 
 
     /**
+     * 求解
+     */
+    public static final String SOL_TAG = "sol";
+
+
+    /**
      * 累积选择
      */
     public static final String CSEL_TAG = "csel";

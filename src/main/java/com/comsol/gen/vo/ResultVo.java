@@ -1,10 +1,12 @@
 package com.comsol.gen.vo;
 
+import com.comsol.gen.common.ComsolConstants;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * @author waani
@@ -47,4 +49,19 @@ public class ResultVo implements Serializable {
      * 表达式
      */
     private String expression;
+
+
+
+    public static ResultVo buildHeatTransfer(String rootPath) {
+        UUID uuid = UUID.randomUUID();
+        ResultVo resultVo = new ResultVo();
+        resultVo.exportType = "vtu";
+        resultVo.dataFilePath = rootPath + "/result/" + uuid + ".vtu";
+        resultVo.imgFilePath = rootPath + "/result/" + uuid + ".png";
+        resultVo.datasetTag = "dset1";
+        resultVo.expression = "T";
+        return resultVo;
+    }
+
+
 }

@@ -13,9 +13,9 @@ public class CollectionUtil {
 
     public static boolean isEmpty(Collection<?> collection) {
         if (null == collection || collection.isEmpty()) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 

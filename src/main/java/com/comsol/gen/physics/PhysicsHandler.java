@@ -35,8 +35,7 @@ public class PhysicsHandler extends AbstractHandler implements HandlerInterface<
     public void create(ModelNode comp, GeomSequence geom, PhysicsVo physicsVo){
         // 物理场接口
         PhysicsEnum physicsEnum = physicsVo.getPhysics();
-        String physicsTag = TagUtil.uniqueTag(physicsEnum.getTag());
-        Physics physics = comp.physics().create(physicsTag, physicsEnum.getPhysics());
+        Physics physics = comp.physics().create(physicsEnum.getTag(), physicsEnum.getPhysics(), geom.tag());
         // 添加物理场特征
         addPhysicsFeatures(geom, physics, physicsVo.getFeatures());
     }

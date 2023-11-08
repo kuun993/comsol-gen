@@ -82,6 +82,9 @@ public class TagUtil {
         return uniqueTag(ComsolConstants.CSEL_TAG);
     }
 
+    public static String solTag() {
+        return uniqueTag(ComsolConstants.SOL_TAG);
+    }
 
     /**
      * 缩写

@@ -83,7 +83,7 @@ public class GeomHandler {
             fin.set("repairtol", geomVo.getRepairTol());
         }
 
-        fin.set("isCreatePairs", geomVo.isCreatePairs());
+        fin.set("createpairs", geomVo.isCreatePairs());
 
 
     }
