@@ -12,10 +12,7 @@ import java.util.Map;
 public class CollectionUtil {
 
     public static boolean isEmpty(Collection<?> collection) {
-        if (null == collection || collection.isEmpty()) {
-            return true;
-        }
-        return false;
+        return null == collection || collection.isEmpty();
     }
 
 

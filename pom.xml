@@ -6,50 +6,53 @@
 
     <groupId>com.comsol</groupId>
     <artifactId>comsol-gen</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <comsol.version>1.0.0</comsol.version>
+        <lombok.version>1.18.26</lombok.version>
     </properties>
 
 
 
-    <dependencies>
-        <dependency>
-            <groupId>com.comsol</groupId>
-            <artifactId>api</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.comsol</groupId>
-            <artifactId>model</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.26</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.comsol</groupId>
-            <artifactId>solver</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+    <modules>
+        <module>comsol-gen-core</module>
+        <module>example</module>
+    </modules>
 
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.comsol</groupId>
+                <artifactId>api</artifactId>
+                <version>${comsol.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>com.comsol</groupId>
+                <artifactId>model</artifactId>
+                <version>${comsol.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>com.comsol</groupId>
+                <artifactId>solver</artifactId>
+                <version>${comsol.version}</version>
+            </dependency>
 
-    </dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
 
+        </dependencies>
+    </dependencyManagement>
 
-
-    <build>
-        <finalName>comsol-gen</finalName>
-    </build>
 
 </project>

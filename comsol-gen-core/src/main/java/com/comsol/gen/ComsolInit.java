@@ -31,6 +31,7 @@ import com.comsol.gen.common.enums.PhysicsInterfaceEnum;
  *
  *
  */
+@Deprecated
 public class ComsolInit {
 
     /**

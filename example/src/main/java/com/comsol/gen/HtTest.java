@@ -1,3 +1,5 @@
+package com.comsol.gen;
+
 import com.comsol.gen.common.enums.PhysicsEnum;
 import com.comsol.gen.common.enums.StudyEnum;
 import com.comsol.gen.comp.ModelHandler;
@@ -18,11 +20,12 @@ import com.comsol.model.Study;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * @author waani
  * @date 2023/10/13 16:57
  * @email kuun993@163.com
- * @description TODO
+ * @description 固体传热
  */
 public class HtTest {
 

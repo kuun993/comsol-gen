@@ -1,6 +1,7 @@
 # comsol-gen
 comsol by Java API  二次开发，自动化构建模型、计算和导出结果等
 
+## example
 
 ### 固体传热Demo
 
@@ -34,4 +35,4 @@ Memory: 953/983 1084/1113
 
 
 #### 结果
-![img.png](static/img.png)
+![img.png](static/ht-result.png)
