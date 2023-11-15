@@ -1,6 +1,6 @@
 package com.comsol.gen.vo;
 
-import com.comsol.gen.common.enums.EntityDimEnum;
+import com.comsol.gen.enums.EntityDimEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

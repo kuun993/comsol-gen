@@ -1,6 +1,6 @@
 package com.comsol.gen.vo;
 
-import com.comsol.gen.common.enums.StudyEnum;
+import com.comsol.gen.enums.StudyEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

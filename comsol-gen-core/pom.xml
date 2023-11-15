@@ -34,6 +34,12 @@
             <artifactId>solver</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.comsol</groupId>
+            <artifactId>comsol-gen-interface</artifactId>
+            <version>${version}</version>
+        </dependency>
+
     </dependencies>
 
 

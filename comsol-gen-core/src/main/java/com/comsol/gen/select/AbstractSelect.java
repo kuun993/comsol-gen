@@ -5,7 +5,7 @@ import com.comsol.gen.util.TagUtil;
 import com.comsol.gen.vo.CoordinateVo;
 import com.comsol.model.GeomFeature;
 import com.comsol.model.GeomSequence;
-import com.comsol.gen.common.enums.EntityDimEnum;
+import com.comsol.gen.enums.EntityDimEnum;
 import com.comsol.model.XDLocalSelection;
 
 import java.util.List;

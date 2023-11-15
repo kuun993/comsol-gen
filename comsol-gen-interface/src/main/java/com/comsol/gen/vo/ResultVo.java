@@ -1,6 +1,5 @@
 package com.comsol.gen.vo;
 
-import com.comsol.gen.common.ComsolConstants;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

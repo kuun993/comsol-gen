@@ -1,7 +1,7 @@
 package com.comsol.gen.std;
 
-import com.comsol.gen.common.enums.PhysicsEnum;
-import com.comsol.gen.common.enums.StudyEnum;
+import com.comsol.gen.enums.PhysicsEnum;
+import com.comsol.gen.enums.StudyEnum;
 import com.comsol.gen.util.CollectionUtil;
 import com.comsol.gen.util.TagUtil;
 import com.comsol.gen.vo.SolFeatureVo;

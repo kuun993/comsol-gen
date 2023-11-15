@@ -2,7 +2,7 @@ package com.comsol.gen.physics;
 
 import com.comsol.gen.common.AbstractHandler;
 import com.comsol.gen.common.HandlerInterface;
-import com.comsol.gen.common.enums.PhysicsEnum;
+import com.comsol.gen.enums.PhysicsEnum;
 import com.comsol.gen.select.AbstractSelect;
 import com.comsol.gen.select.BallSelect;
 import com.comsol.gen.util.CollectionUtil;

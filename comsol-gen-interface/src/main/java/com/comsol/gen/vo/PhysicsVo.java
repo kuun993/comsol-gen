@@ -1,7 +1,6 @@
 package com.comsol.gen.vo;
 
-import com.comsol.gen.common.enums.PhysicsEnum;
-import com.comsol.gen.common.enums.PhysicsInterfaceEnum;
+import com.comsol.gen.enums.PhysicsEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

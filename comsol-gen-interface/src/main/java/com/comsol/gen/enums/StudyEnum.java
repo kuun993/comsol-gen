@@ -1,4 +1,4 @@
-package com.comsol.gen.common.enums;
+package com.comsol.gen.enums;
 
 
 

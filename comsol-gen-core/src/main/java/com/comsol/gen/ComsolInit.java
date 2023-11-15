@@ -1,14 +1,14 @@
 package com.comsol.gen;
 
-import com.comsol.gen.common.enums.InitEnum;
-import com.comsol.gen.common.enums.StudyEnum;
+import com.comsol.gen.enums.InitEnum;
+import com.comsol.gen.enums.StudyEnum;
 import com.comsol.gen.comp.CompHandler;
 import com.comsol.gen.comp.ModelHandler;
 import com.comsol.model.Model;
 import com.comsol.model.ModelNode;
 import com.comsol.model.Study;
 import com.comsol.model.StudyFeature;
-import com.comsol.gen.common.enums.PhysicsInterfaceEnum;
+import com.comsol.gen.enums.PhysicsInterfaceEnum;
 
 
 /**

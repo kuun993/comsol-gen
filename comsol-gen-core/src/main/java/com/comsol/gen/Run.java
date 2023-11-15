@@ -1,8 +1,8 @@
 package com.comsol.gen;
 
+import com.comsol.gen.comp.ModelHandler;
 import com.comsol.gen.enums.PhysicsEnum;
 import com.comsol.gen.enums.StudyEnum;
-import com.comsol.gen.comp.ModelHandler;
 import com.comsol.gen.geom.GeomHandler;
 import com.comsol.gen.mat.MaterialHandler;
 import com.comsol.gen.mesh.MeshHandler;
@@ -20,51 +20,42 @@ import com.comsol.model.Study;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * @author waani
- * @date 2023/10/13 16:57
+ * @author chenbingkun
+ * @date 2023/11/9 17:26
  * @email kuun993@163.com
- * @description 固体传热
+ * @description TODO
  */
-public class HtTest {
+public class Run {
 
 
-    public static Model run() {
+
+
+    public static Model run(ComsolVo vo) {
+
         // 模型组件
         ModelHandler modelHandler = new ModelHandler();
-        Model model = modelHandler.build("Model", "D:/opt/comsol/");
+        Model model = modelHandler.build(vo.getModelName(), vo.getModelPath());
+        // 组件tag
         String compTag = TagUtil.compTag();
         ModelNode modelNode = modelHandler.createComponent(model, compTag);
 
         // 几何
         GeomHandler geomHandler = new GeomHandler();
-        GeomVo geomVo = GeomVo.build("D:/opt/comsol/stp/PCB-ASSEM.stp");
-        GeomSequence geom = geomHandler.geomImport(modelNode, geomVo);
+        GeomSequence geom = geomHandler.geomImport(modelNode, vo.getGeom());
 
 
         // 物理场
         PhysicsHandler physicsHandler = new PhysicsHandler();
-        PhysicsVo physicsVo = new PhysicsVo();
-        // 传热
-        physicsVo.setPhysics(PhysicsEnum.HeatTransfer);
-        List<PhysicsFeatureVo> physicsFeatureVos = new ArrayList<PhysicsFeatureVo>(2);
-        // 热源
-        physicsFeatureVos.add(PhysicsFeatureVo.buildHeatSource(0.03, 0.01, 0.01));
-        // 热通量
-        physicsFeatureVos.add(PhysicsFeatureVo.buildHeatFluxBoundary(0, -0.025, 0.001));
-        physicsVo.setFeatures(physicsFeatureVos);
-        physicsHandler.create(modelNode, geom, physicsVo);
+        physicsHandler.create(modelNode, geom, vo.getPhysics());
 
         // 材料
         MaterialHandler materialHandler = new MaterialHandler();
-        MaterialVo materialVo = MaterialVo.buildHeatTransfer(true);
-        materialHandler.create(modelNode, geom, materialVo);
+        materialHandler.create(modelNode, geom, vo.getMaterials());
 
         // 网格
         MeshHandler meshHandler = new MeshHandler();
-        MeshVo meshVo = MeshVo.build();
-        meshHandler.create(modelNode, geom, meshVo);
+        meshHandler.create(modelNode, geom, vo.getMeshes());
 
         // 研究
         StudyHandler studyHandler = new StudyHandler();
@@ -76,21 +67,14 @@ public class HtTest {
 
         // 结果
         ResultHandler resultHandler = new ResultHandler();
-        ResultVo resultVo = ResultVo.buildHeatTransfer("d:/opt/comsol/test/");
+        resultHandler.export(model, vo.getResult());
 
-        resultHandler.export(model, resultVo);
+        
 
-        return model;
+        return null;
     }
 
 
-    public static void main(String[] args) {
-        try {
-            run();
-        } catch (Exception e) {
-            e.printStackTrace(System.out);
-            throw new RuntimeException(e.getMessage());
-        }
-    }
+
 
 }

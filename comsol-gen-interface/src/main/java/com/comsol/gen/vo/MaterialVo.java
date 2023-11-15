@@ -1,7 +1,6 @@
 package com.comsol.gen.vo;
 
-import com.comsol.gen.common.enums.EntityDimEnum;
-import com.comsol.gen.util.StringUtil;
+import com.comsol.gen.enums.EntityDimEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -41,7 +40,7 @@ public class MaterialVo extends BaseVo implements Serializable {
 
 
     public String getGroup() {
-        if (StringUtil.isEmpty(group)) {
+        if (group == null || group.isEmpty()) {
             return "def";
         }
         return group;

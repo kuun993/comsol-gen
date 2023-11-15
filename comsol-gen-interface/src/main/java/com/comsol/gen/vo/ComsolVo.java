@@ -52,4 +52,10 @@ public class ComsolVo implements Serializable {
      */
     private List<MeshVo> meshes;
 
+
+    /**
+     * 结果
+     */
+    private ResultVo result;
+
 }
