@@ -8,7 +8,7 @@ import com.comsol.model.Study;
 import com.comsol.model.StudyFeature;
 
 /**
- * @author chenbingkun
+ * @author waani
  * @date 2023/11/6 15:31
  * @email kuun993@163.com
  * @description TODO
