@@ -17,8 +17,6 @@ import com.comsol.model.Model;
 import com.comsol.model.ModelNode;
 import com.comsol.model.Study;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author waani
@@ -27,7 +25,6 @@ import java.util.List;
  * @description TODO
  */
 public class Run {
-
 
 
 
@@ -69,9 +66,7 @@ public class Run {
         ResultHandler resultHandler = new ResultHandler();
         resultHandler.export(model, vo.getResult());
 
-        
-
-        return null;
+        return model;
     }
 
 

@@ -17,6 +17,11 @@
         <comsol.version>1.0.0</comsol.version>
         <lombok.version>1.18.26</lombok.version>
         <boot.version>2.7.8</boot.version>
+        <mysql.version>8.0.33</mysql.version>
+        <fastjson.version>2.0.25</fastjson.version>
+        <HikariCP.version>4.0.3</HikariCP.version>
+        <HikariCP.version>4.0.3</HikariCP.version>
+        <spring-jdbc.version>5.3.25</spring-jdbc.version>
     </properties>
 
 
@@ -55,13 +60,37 @@
                 <version>${lombok.version}</version>
             </dependency>
 
-
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${HikariCP.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${spring-jdbc.version}</version>
             </dependency>
 
         </dependencies>

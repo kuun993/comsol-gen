@@ -35,4 +35,8 @@ public interface ComsolService {
     void runTask(String taskId);
 
 
+
+    ComsolVo select(String taskId);
+
+
 }
