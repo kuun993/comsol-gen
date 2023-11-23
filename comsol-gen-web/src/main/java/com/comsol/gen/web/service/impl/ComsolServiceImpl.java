@@ -2,7 +2,6 @@ package com.comsol.gen.web.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.comsol.gen.vo.ComsolVo;
-import com.comsol.gen.vo.TaskInfo;
 import com.comsol.gen.web.service.ComsolService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -26,8 +25,6 @@ public class ComsolServiceImpl implements ComsolService {
     private final JdbcTemplate jdbcTemplate;
 
 
-    private static final String SELECT_SQL = "SELECT id, task_id, content, create_time FROM task_info WHERE task_id=?;";
-
 
     private static final String INSERT_SQL = "INSERT INTO task_info\n" +
             "(task_id, content)\n" +
@@ -36,6 +33,8 @@ public class ComsolServiceImpl implements ComsolService {
 
     @Override
     public String startTask(ComsolVo comsolVo) {
+        String taskId = transientTask(comsolVo);
+
         return null;
     }
 
@@ -50,17 +49,11 @@ public class ComsolServiceImpl implements ComsolService {
     @Override
     public void runTask(String taskId) {
 
-        JdbcTemplate template = new JdbcTemplate();
+
+        // jar Exec.class config ...
     }
 
 
-    @Override
-    public ComsolVo select(String taskId) {
-        RowMapper<TaskInfo> mapper = new BeanPropertyRowMapper<>(TaskInfo.class);
-        TaskInfo taskInfo = jdbcTemplate.queryForObject(SELECT_SQL, new BeanPropertyRowMapper<TaskInfo>(TaskInfo.class), taskId);
-        String content = taskInfo.getContent();
-        return JSON.parseObject(content, ComsolVo.class);
-    }
 
 
 

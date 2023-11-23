@@ -36,7 +36,5 @@ public interface ComsolService {
 
 
 
-    ComsolVo select(String taskId);
-
 
 }

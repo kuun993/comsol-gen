@@ -25,10 +25,4 @@ class ComsolServiceImplTest {
     }
 
 
-    @Test
-    public void select() {
-        ComsolVo comsolVo = comsolService.select("0c4b33a9-96af-4977-82aa-ba740ed1f743");
-        Assert.isTrue(comsolVo != null, "comsolVo is null.");
-    }
-
 }
