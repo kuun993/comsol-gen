@@ -1,5 +1,28 @@
 # comsol-gen
-comsol by Java API  二次开发，自动化构建模型、计算和导出结果等
+`comsol by Java API`  二次开发，自动化构建模型、计算和导出结果等
+
+前端使用`three.js`等加载模型，点击模型获取坐标，后端根据坐标创建选择器选择对象。
+
+
+
+
+
+
+## usage
+
+#### 编译
+
+```
+> comsolcompile -classpathadd W:\workspace\github\comsol-gen\target\comsol-gen.jar Exec.java
+
+```
+
+#### 运行
+```
+> comsolbatch -classpathadd W:\workspace\github\comsol-gen\target\comsol-gen.jar -inputfile Exec.class
+```
+
+
 
 ## example
 
