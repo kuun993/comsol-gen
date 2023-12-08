@@ -4,3 +4,10 @@ spring:
     url: jdbc:mysql://localhost:13306/comsol?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: 1qaz@WSX
+
+
+comsol:
+  bat: W:\workspace\github\comsol-gen\comsol-gen-core\src\main\resources\run\start.bat
+  db-properties: W:\workspace\github\comsol-gen\comsol-gen-core\src\main\resources\self\db.properties
+  jar: W:\workspace\github\comsol-gen\comsol-gen-core\target\comsol-gen-core-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+  input-file: W:\workspace\github\comsol-gen\comsol-gen-core\src\main\resources\run\Exec.class

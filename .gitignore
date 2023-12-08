@@ -49,5 +49,5 @@ mvnw
 mvnw.cmd
 .mvn/
 
-*/waani*
 *.lck
+**/self/**
